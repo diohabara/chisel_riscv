@@ -1,0 +1,18 @@
+### https://raw.github.com/github/gitignore/b0012e4930d0a8c350254a3caeedf7441ea286a3/Global/Metals.gitignore
+
+ # Generated Metals (Scala Language Server) files
+ # Reference: https://scalameta.org/metals/
+.metals/
+.bloop/
+project/metals.sbt
+
+
+### https://raw.github.com/github/gitignore/b0012e4930d0a8c350254a3caeedf7441ea286a3/Scala.gitignore
+
+*.class
+*.log
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+
