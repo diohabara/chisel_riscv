@@ -95,3 +95,5 @@ project/plugins/project/
 .cache
 .lib/
 .bsp/
+project/
+.idea/
