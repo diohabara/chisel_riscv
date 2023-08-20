@@ -1,17 +1,17 @@
 package common
 
-import chisel3._
 import chisel3.util._
 
 /** * RISC-V Instruction Representation format
   *
-  * R format: funct7[31:25] | rs2[24:20] |rs1[19:15] | funct3[14:12] | rd[11:7] | opcode[6:0]
+  * R format: funct7[31:25] | rs2[24:20] |rs1[19:15] | funct3[14:12] | rd[11:7] \| opcode[6:0]
   *
   * I format: imm[31:20] | rs1[19:15] | funct3[14:12] | rd[11:7] | opcode[6:0]
   *
   * S format: imm[31:25] | rs2[24:20] | rs1[19:15] | funct3[14:12] | imm[11:7] | opcode[6:0]
   *
-  * B format: imm[31:31] | imm[30:25] | imm[24:20] | rs2[19:15] | rs1[14:12] | imm[11:7] | imm[6:0] | funct3[5:3] | opcode[2:0]
+  * B format: imm[31:31] | imm[30:25] | imm[24:20] | rs2[19:15] | rs1[14:12] | imm[11:7] | imm[6:0]
+  * \| funct3[5:3] | opcode[2:0]
   *
   * U format: imm[31:12] | rd[11:7] | opcode[6:0]
   *

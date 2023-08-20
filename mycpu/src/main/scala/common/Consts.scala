@@ -1,14 +1,15 @@
 package common
 
 import chisel3._
-import chisel3.util._
 
 object Consts {
-  val WORD_LEN     = 32
-  val START_ADDR   = 0.U(WORD_LEN.W)
-  val BUBBLE       = 0x00000013.U(WORD_LEN.W)   // [ADDI x0,x0,0] = BUBBLE
-  val UNIMP        = "x_c0001073".U(WORD_LEN.W) // [CSRRW x0, cycle, x0]
-  val ADDR_LEN     = 5                          // rs1,rs2,wb
+  val WORD_LEN   = 32
+  val START_ADDR = 0.U(WORD_LEN.W)
+  val BUBBLE =
+    0x00000013.U(WORD_LEN.W) // [ADDI x0,x0,0] = BUBBLE
+  val UNIMP =
+    "x_c0001073".U(WORD_LEN.W) // [CSRRW x0, cycle, x0]
+  val ADDR_LEN     = 5 // rs1,rs2,wb
   val CSR_ADDR_LEN = 12
   val VLEN         = 128
   val LMUL_LEN     = 2
