@@ -29,7 +29,8 @@ class Memory extends Module {
   // to make PC count-up 4
   // 1address for 8bit and 32bit = 4address
   val mem = Mem(16384, UInt(8.W))
-  loadMemoryFromFile(mem, "src/hex/fetch.hex")
+  // change hex file for test
+  loadMemoryFromFile(mem, "src/hex/sw.hex")
   // 4 x 8bit data -> 1 x 32bit date
   io.imem.inst := Cat(
     mem(io.imem.addr + 3.U(WORD_LEN.W)),

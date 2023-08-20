@@ -2,7 +2,7 @@ package common
 
 import chisel3.util._
 
-/** * RISC-V Instruction Representation format
+/** RISC-V Instruction Representation format
   *
   * R format: funct7[31:25] | rs2[24:20] |rs1[19:15] | funct3[14:12] | rd[11:7] \| opcode[6:0]
   *
@@ -10,8 +10,7 @@ import chisel3.util._
   *
   * S format: imm[31:25] | rs2[24:20] | rs1[19:15] | funct3[14:12] | imm[11:7] | opcode[6:0]
   *
-  * B format: imm[31:31] | imm[30:25] | imm[24:20] | rs2[19:15] | rs1[14:12] | imm[11:7] | imm[6:0]
-  * \| funct3[5:3] | opcode[2:0]
+  * B format: imm[31:31] | imm[30:25] | imm[24:20] | rs2[19:15] | rs1[14:12] | imm[11:7] | imm[6:0] | funct3[5:3] | opcode[2:0]
   *
   * U format: imm[31:12] | rd[11:7] | opcode[6:0]
   *
@@ -20,7 +19,37 @@ import chisel3.util._
 
 object Instructions {
   // load, store
+  /** I-format
+    *
+    * lw rd, offset(rs1)
+    *
+    * x[rd] = M[x[rs1] + sext[imm_i]]
+    *
+    * x: register
+    *
+    * M: memory
+    *
+    * x[rs1]: base address
+    *
+    * sext[imm_i]: sign-extended immediate
+    */
   val LW = BitPat("b?????????????????010?????0000011")
+  /** S-format
+    *
+    * sw rs2, offset(rs1)
+    *
+    * M[x[rs1] + sext[imm_s]] = x[rs2]
+    *
+    * x: register
+    *
+    * M: memory
+    *
+    * x[rs1]: base address
+    *
+    * sext[imm_s]: sign-extended immediate
+    *
+    * x[rs2]: data to be stored
+    */
   val SW = BitPat("b?????????????????010?????0100011")
 
   // add

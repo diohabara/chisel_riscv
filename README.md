@@ -41,6 +41,9 @@ In Docker
 ```bash
 cd /mycpu
 sbt "testOnly fetch.HexTest"
+sbt "testOnly decode.HexTest"
+sbt "testOnly lw.HexTest"
+sbt "testOnly sw.HexTest"
 ```
 
 ## References

@@ -43,13 +43,16 @@ class Core extends Module {
   pc_reg := pc_next
 
   // Instruction Decode (ID) Stage
-  val rs1_addr = inst(19, 15)
-  val rs2_addr = inst(24, 20)
-  val wb_addr  = inst(11, 7)
-  // Q: Muxってなんだっけ？
-  // A: 1本の制御信号に応じて、2本の入力信号のうち1本を選びその値を出力する
-  //   ここでは、rs1_addrが0の場合は0を、そうでない場合はregfile(rs1_addr)を
-  //   Muxcaseのtrue/false版
+  val rs1_addr = inst(19, 15) // 15-19th bits specify rs1 register
+  val rs2_addr = inst(24, 20) // 20-24th bits specify rs2 register
+  val wb_addr  = inst(11, 7)  // 7-11th bits specify write back register
+  /*
+  Q: Muxってなんだっけ？
+  A: 1本の制御信号に応じて、2本の入力信号のうち1本を選びその値を出力する
+    ここでは、rs1_addrが0の場合は0を、そうでない場合はregfile(rs1_addr)を
+    Muxcaseのtrue/false版
+   */
+  // read register data
   val rs1_data =
     Mux(
       (rs1_addr =/= 0.U(WORD_LEN.U)),
@@ -63,11 +66,11 @@ class Core extends Module {
       0.U(WORD_LEN.U)
     )
 
-  val imm_i = inst(31, 20)
+  val imm_i = inst(31, 20) // extract offset[11:0]
   // Q: Catってなんだっけ？
   // A: 2本の信号を結合する
   // e.g., Cat("b101".U, b"11".U) -> "b10111".U
-  val imm_i_sext = Cat(Fill(20, imm_i(11)), imm_i)
+  val imm_i_sext = Cat(Fill(20, imm_i(11)), imm_i) // sign-extend
   val imm_s      = Cat(inst(31, 25), inst(11, 7))
   val imm_s_sext = Cat(Fill(20, imm_s(11)), imm_s)
   val imm_b =
@@ -559,6 +562,8 @@ class Core extends Module {
   printf(p"rs2_data   : 0x${Hexadecimal(rs2_data)}\n")
   printf(p"wb_data    : 0x${Hexadecimal(wb_data)}\n")
   printf(p"dmem.addr  : ${io.dmem.addr}\n")
-  printf(p"dmem.rdata : ${io.dmem.rdata}\n")
+  printf(p"dmem.rdata : 0x${Hexadecimal(io.dmem.rdata)}\n")
+  printf(p"dmem.wen   : ${io.dmem.wen}\n")
+  printf(p"dmem.wdata : 0x${Hexadecimal(io.dmem.wdata)}\n")
   printf("---------\n")
 }
