@@ -55,6 +55,11 @@ class Core extends Module {
   // read register data
   val rs1_data =
     Mux(
+      // Q: 0.U(WORD_LEN.U)ってどういう意味だ？
+      // A: 0.U(WORD_LEN.U)は、WORD_LENビットの0を表す
+      // Q: FIll(0, WORD_LEN)と違いあるのか？
+      // A: Fill(0, WORD_LEN)は、WORD_LENビットの0を表す
+      // 同じ！
       (rs1_addr =/= 0.U(WORD_LEN.U)),
       regfile(rs1_addr),
       0.U(WORD_LEN.U)
