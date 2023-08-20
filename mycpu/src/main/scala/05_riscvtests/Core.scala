@@ -35,6 +35,7 @@ class Core extends Module {
     Seq(
       br_flg  -> br_target,
       jmp_flg -> alu_out,
+      // 0x305 (mtvec) contains trap vector address
       (inst === ECALL) -> csr_regfile(
         0x305
       ) // go to trap vector
@@ -444,7 +445,7 @@ class Core extends Module {
         MEN_X,
         REN_X,
         WB_X,
-        CSR_E
+        CSR_E // exception
       )
     )
   )
@@ -534,7 +535,7 @@ class Core extends Module {
       (csr_cmd === CSR_W) -> op1_data,
       (csr_cmd === CSR_S) -> (csr_rdata | op1_data),
       (csr_cmd === CSR_C) -> (csr_rdata & ~op1_data),
-      (csr_cmd === CSR_E) -> 11.U(WORD_LEN.W)
+      (csr_cmd === CSR_E) -> 11.U(WORD_LEN.W) // ECALL from machine mode
     )
   )
 

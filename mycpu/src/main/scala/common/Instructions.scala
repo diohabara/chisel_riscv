@@ -376,6 +376,22 @@ object Instructions {
   val CSRRCI = BitPat("b?????????????????111?????1110011")
 
   // exception
+  /** I-format
+    *
+    * ecall
+    *
+    * write value to the mcause (0x342) register of CSR
+    *
+    * | value | meaning         |
+    * |:------|:----------------|
+    * | 8     | user mode       |
+    * | 9     | supervisor mode |
+    * | 10    | hypervisor mode |
+    * | 11    | machine mode    |
+    */
+  // In our case, we only use machine mode
+  // Then, jump to trap vector address in mtvec (0x305) of CSR
+  // syscall is written in the trap vector
   val ECALL = BitPat("b00000000000000000000000001110011")
 
   // vector
