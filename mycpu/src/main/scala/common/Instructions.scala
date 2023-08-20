@@ -294,12 +294,85 @@ object Instructions {
     */
   val AUIPC = BitPat("b?????????????????????????0010111")
 
-  // CSR
-  val CSRRW  = BitPat("b?????????????????001?????1110011")
+  // CSR(Controll and Status Register)
+  // CSR is a 12-bit register
+  // CSR register examples
+  // | CSR   | Name    | Description                                |
+  // | 0x300 | mstatus | Machine status register(allow instruption) |
+  // | 0x305 | mtvec   | Machine trap-handler base address          |
+  // | 0x341 | mepc    | Machine exception program counter          |
+  // | 0x342 | mcause  | Machine trap cause                         |
+  // CSR comes with both write/read to the register
+  /** I-format
+    *
+    * csrrw rd, csr, rs1
+    *
+    * CSRs[csr] <- x[rs1]
+    *
+    * x[rd] <- CSRs[csr]
+    *
+    * CSRRW: read and write
+    */
+  val CSRRW = BitPat("b?????????????????001?????1110011")
+
+  /** I-format
+    *
+    * csrrwi rd, csr, imm_z
+    *
+    * CSRs[csr] <- uext(imm_z)
+    *
+    * x[rd] <- CSRs[csr]
+    *
+    * CSRRWI: read and write immediate
+    */
   val CSRRWI = BitPat("b?????????????????101?????1110011")
-  val CSRRS  = BitPat("b?????????????????010?????1110011")
+
+  /** I-format
+    *
+    * csrrs rd, csr, rs1
+    *
+    * CSRs[csr] <- CSRs[csr] | x[rs1]
+    *
+    * x[rd] <- CSRs[csr]
+    *
+    * CSRRS: read and set
+    */
+  val CSRRS = BitPat("b?????????????????010?????1110011")
+
+  /** I-format
+    *
+    * csrrsi rd, csr, imm_z
+    *
+    * CSRs[csr] <- CSRs[csr] | uext(imm_z)
+    *
+    * x[rd] <- CSRs[csr]
+    *
+    * CSRRSI: read and set immediate
+    */
   val CSRRSI = BitPat("b?????????????????110?????1110011")
-  val CSRRC  = BitPat("b?????????????????011?????1110011")
+
+  /** I-format
+    *
+    * csrrc rd, csr, rs1
+    *
+    * CSRs[csr] <- CSRs[csr] & ~x[rs1]
+    *
+    * x[rd] <- CSRs[csr]
+    *
+    * CSRRC: read and clear
+    */
+  val CSRRC = BitPat("b?????????????????011?????1110011")
+
+  /** I-format
+    *
+    * csrrc rd, csr, rs1
+    *
+    * CSRs[csr] <- CSRs[csr] & ~uext(imm_z)
+    *
+    * x[rd] <- CSRs[csr]
+    *
+    * CSRRCI: read and clear immediate
+    */
   val CSRRCI = BitPat("b?????????????????111?????1110011")
 
   // exception

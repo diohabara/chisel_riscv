@@ -525,7 +525,9 @@ class Core extends Module {
     0x342.U(CSR_ADDR_LEN.W),
     inst(31, 20)
   )
+  // read CSR
   val csr_rdata = csr_regfile(csr_addr)
+  // write CSR
   val csr_wdata = MuxCase(
     0.U(WORD_LEN.W),
     Seq(
@@ -536,7 +538,7 @@ class Core extends Module {
     )
   )
 
-  when(csr_cmd > 0.U) {
+  when(csr_cmd > 0.U) { // when CSR instruction
     csr_regfile(csr_addr) := csr_wdata
   }
 
