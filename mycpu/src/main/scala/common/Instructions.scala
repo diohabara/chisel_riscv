@@ -34,7 +34,6 @@ object Instructions {
     * sext[imm_i]: sign-extended immediate
     */
   val LW = BitPat("b?????????????????010?????0000011")
-
   /** S-format
     *
     * sw rs2, offset(rs1)
@@ -61,7 +60,6 @@ object Instructions {
     * x[rd] = x[rs1] + x[rs2]
     */
   val ADD = BitPat("b0000000??????????000?????0110011")
-
   /** I-format
     *
     * addi rd, rs1, imm_i
@@ -69,7 +67,6 @@ object Instructions {
     * x[rd] = x[rs1] + sext[imm_i]
     */
   val ADDI = BitPat("b?????????????????000?????0010011")
-
   /** R-format
     *
     * sub rd, rs1, rs2
@@ -86,7 +83,6 @@ object Instructions {
     * x[rd] = x[rs1] & x[rs2]
     */
   val AND = BitPat("b0000000??????????111?????0110011")
-
   /** R-format
     *
     * or rd, rs1, rs2
@@ -94,7 +90,6 @@ object Instructions {
     * x[rd] = x[rs1] | x[rs2]
     */
   val OR = BitPat("b0000000??????????110?????0110011")
-
   /** R-format
     *
     * xor rd, rs1, rs2
@@ -102,7 +97,6 @@ object Instructions {
     * x[rd] = x[rs1] ^ x[rs2]
     */
   val XOR = BitPat("b0000000??????????100?????0110011")
-
   /** I-format
     *
     * andi rd, rs1, imm_i
@@ -110,7 +104,6 @@ object Instructions {
     * x[rd] = x[rs1] & sext[imm_i]
     */
   val ANDI = BitPat("b?????????????????111?????0010011")
-
   /** I-format
     *
     * ori rd, rs1, imm_i
@@ -118,7 +111,6 @@ object Instructions {
     * x[rd] = x[rs1] | sext[imm_i]
     */
   val ORI = BitPat("b?????????????????110?????0010011")
-
   /** I-format
     *
     * xori rd, rs1, imm_i
@@ -135,7 +127,6 @@ object Instructions {
     * x[rd] = x[rs1] << x[rs2]
     */
   val SLL = BitPat("b0000000??????????001?????0110011")
-
   /** R-format
     *
     * srl rd, rs1, rs2
@@ -143,7 +134,6 @@ object Instructions {
     * x[rd] = x[rs1] >> x[rs2]
     */
   val SRL = BitPat("b0000000??????????101?????0110011")
-
   /** R-format
     *
     * sra rd, rs1, rs2
@@ -151,7 +141,6 @@ object Instructions {
     * x[rd] = x[rs1] >> x[rs2]
     */
   val SRA = BitPat("b0100000??????????101?????0110011")
-
   /** I-format
     *
     * slli rd, rs1, imm_i
@@ -159,7 +148,6 @@ object Instructions {
     * x[rd] = x[rs1] << sext[imm_i]
     */
   val SLLI = BitPat("b0000000??????????001?????0010011")
-
   /** I-format
     *
     * srli rd, rs1, imm_i
@@ -167,7 +155,6 @@ object Instructions {
     * x[rd] = x[rs1] >> sext[imm_i]
     */
   val SRLI = BitPat("b0000000??????????101?????0010011")
-
   /** I-format
     *
     * srai rd, rs1, imm_i
@@ -186,7 +173,6 @@ object Instructions {
     * x[rd] = (x[rs1] < x[rs2]) ? 1 : 0
     */
   val SLT = BitPat("b0000000??????????010?????0110011")
-
   /** R-format
     *
     * unsigned
@@ -196,7 +182,6 @@ object Instructions {
     * x[rd] = (x[rs1] < x[rs2]) ? 1 : 0
     */
   val SLTU = BitPat("b0000000??????????011?????0110011")
-
   /** I-format
     *
     * slti rd, rs1, imm_i
@@ -204,7 +189,6 @@ object Instructions {
     * x[rd] = (x[rs1] < sext[imm_i]) ? 1 : 0
     */
   val SLTI = BitPat("b?????????????????010?????0010011")
-
   /** I-format
     *
     * sltiu rd, rs1, imm_i
@@ -221,7 +205,6 @@ object Instructions {
     * if (x[rs1] == x[rs2]) pc += sext[imm_b]
     */
   val BEQ = BitPat("b?????????????????000?????1100011")
-
   /** B-format
     *
     * bne rs1, rs2, offset
@@ -229,7 +212,6 @@ object Instructions {
     * if (x[rs1] != x[rs2]) pc += sext[imm_b]
     */
   val BNE = BitPat("b?????????????????001?????1100011")
-
   /** B-format
     *
     * blt rs1, rs2, offset
@@ -237,7 +219,6 @@ object Instructions {
     * if (x[rs1] < x[rs2]) pc += sext[imm_b]
     */
   val BLT = BitPat("b?????????????????100?????1100011")
-
   /** B-format
     *
     * bge rs1, rs2, offset
