@@ -102,6 +102,35 @@ cd /mycpu/src/shell
 
 The results will be in `mycpu/results`
 
+### test with C
+
+compile C code
+
+```bash
+cd /mycpu/src/c
+riscv64-unknown-elf-gcc \
+  -march=rv32i \ # specify ISA
+  -mabi=ilp32 \ # specify ABI
+  -c \ # compile only, not link
+  -o ctest.o ctest.c
+```
+
+link it
+
+```bash
+riscv64-unknown-elf-ld -b elf32-littleriscv ctest.o -T link.ld -o ctest
+riscv64-unknown-elf-objcopy -O binary ctest ctest.bin
+od -An -tx1 -w1 -v ctest.bin > ../hex/ctest.hex
+riscv64-unknown-elf-objdump -b elf32-littleriscv -D ctest > ../dump/ctest.elf.dmp
+```
+
+test it
+
+```bash
+cd /mycpu
+sbt "testOnly ctest.HexTest"
+```
+
 ## References
 
 - <https://gihyo.jp/book/2021/978-4-297-12305-5>
