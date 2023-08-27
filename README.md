@@ -131,6 +131,19 @@ cd /mycpu
 sbt "testOnly ctest.HexTest"
 ```
 
+compile `br_hazard`
+
+```bash
+cd /mycpu/src/c
+make br_hazard
+```
+
+```bash
+cd /mycpu
+sbt "testOnly pipeline.HexTest"
+sbt "testOnly pipeline_brhazard.HexTest"
+```
+
 ## References
 
 - <https://gihyo.jp/book/2021/978-4-297-12305-5>
