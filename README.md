@@ -131,6 +131,8 @@ cd /mycpu
 sbt "testOnly ctest.HexTest"
 ```
 
+### Branch hazard
+
 compile `br_hazard`
 
 ```bash
@@ -142,6 +144,27 @@ make br_hazard
 cd /mycpu
 sbt "testOnly pipeline.HexTest"
 sbt "testOnly pipeline_brhazard.HexTest"
+```
+
+### Data hazard
+
+compile `hazard_wb`
+
+```bash
+cd /mycpu/src/c
+make hazard_wb
+```
+
+```bash
+cd /mycpu
+sbt "testOnly pipeline_datahazard.HexTest"
+```
+
+### RISC-V tests
+
+```bash
+cd /mycpu/src/shell
+./riscv_tests.sh pipeline_datahazard 09_pipeline_datahazard
 ```
 
 ## References
